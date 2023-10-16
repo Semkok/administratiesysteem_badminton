@@ -13,7 +13,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        return view('members.index', [
+            'member' => Member::orderBy('created_at', 'DESC')->get(),
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('members.create');
     }
 
     /**
@@ -29,7 +31,24 @@ class MemberController extends Controller
      */
     public function store(StoreMemberRequest $request)
     {
-        //
+        $member = new Member();
+        $member->nickname = $request->nickname;
+        $member->name = $request->name;
+        $member->surname = $request->surname;
+        $member->phonenumber = $request->phonenumber;
+        $member->email = $request->email;
+        $member->photograph = $request->photograph;
+        $member->birthday = $request->birthday;
+        $member->address = $request->address;
+        $member->nickname = $request->nickname;
+        $member->bank = $request->bank;
+        $member->payment_method = $request->payment_method;
+
+
+        $member->save();
+        return $this->index();
+//        return redirect(route('members.index'));
+
     }
 
     /**

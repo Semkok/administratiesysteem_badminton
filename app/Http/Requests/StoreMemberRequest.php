@@ -11,7 +11,7 @@ class StoreMemberRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreMemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+//            'nickname' => 'required|string',
+//            'name' => 'required|string',
+//            'surname' => 'required|string',
+//            'phonenumber' => 'required|string',
+//            'email' => 'required|email',
+//            'photograph' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed.
+//            'birthday' => 'required|date',
+//            'address' => 'required|string',
+//            'bank' => 'required|string',
+//            'payment_method' => 'required|string',
         ];
     }
 }
