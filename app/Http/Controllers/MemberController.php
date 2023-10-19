@@ -14,7 +14,7 @@ class MemberController extends Controller
     public function index()
     {
         return view('members.index', [
-            'member' => Member::orderBy('created_at', 'DESC')->get(),
+            'members' => Member::orderBy('created_at', 'DESC')->get(),
         ]);
     }
 
@@ -31,21 +31,32 @@ class MemberController extends Controller
      */
     public function store(StoreMemberRequest $request)
     {
-        $member = new Member();
-        $member->nickname = $request->nickname;
-        $member->name = $request->name;
-        $member->surname = $request->surname;
-        $member->phonenumber = $request->phonenumber;
-        $member->email = $request->email;
-        $member->photograph = $request->photograph;
-        $member->birthday = $request->birthday;
-        $member->address = $request->address;
-        $member->nickname = $request->nickname;
-        $member->bank = $request->bank;
-        $member->payment_method = $request->payment_method;
+//        $members = new Member();
+//        $members->name = $request->name;
+//        $members->surname = $request->surname;
+//        $members->phonenumber = $request->phonenumber;
+//        $members->email = $request->email;
+//        $members->photograph = $request->photograph;
+//        $members->birthday = $request->birthday;
+//        $members->address = $request->address;
+//        $members->nickname = $request->nickname;
+//        $members->bank = $request->bank;
+//        $members->payment_method = $request->payment_method;
+//        $members->save();
+        Member::create([
+            'nickname' => $request->nickname,
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'phonenumber' => $request->phonenumber,
+            'email' => $request->email,
+            'photograph' => $this->storeImage($request),
+            'birthday' => $request->birthday,
+            'address' => $request->address,
+            'bank' => $request->bank,
+            'payment_method' => $request->payment_method
+        ]);
 
 
-        $member->save();
         return $this->index();
 //        return redirect(route('members.index'));
 
@@ -54,9 +65,12 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Member $member)
+    public function show($id)
     {
-        //
+
+        return view('members.show', [
+            'member' => Member::findOrFail($id) // will throw an exception if not found
+        ]);
     }
 
     /**
@@ -81,5 +95,11 @@ class MemberController extends Controller
     public function destroy(Member $member)
     {
         //
+    }
+
+    private function storeImage($request){
+        $newImageName = uniqid() . '_' . $request->name . '.' . $request->file('photograph')->extension();
+            $request->photograph->extension();
+        return $request->photograph->move("public/images/", $newImageName);
     }
 }

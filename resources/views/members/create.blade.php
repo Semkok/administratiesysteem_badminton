@@ -8,7 +8,7 @@
 </head>
 <body class="flex flex-col">
     <h1>CREATE A NEW MEMBER:</h1>
-    <form method="POST" action="{{route('members.store')}}">
+    <form method="POST" action="{{route('members.store')}}" enctype="multipart/form-data">
         @csrf
         <label for="nickname">Nickname:</label>
         <input type="name" name="nickname">
@@ -26,7 +26,9 @@
         <input type="name" name="email">
         <br>
         <label for="photograph">Photograph:</label>
-        <input type="file" id="photograph" name="photograph"  required>
+
+        <input type="file" name="photograph">
+        </label>
         <br>
         <label for="birthday">Birthday:</label>
         <input type="name" name="birthday">
