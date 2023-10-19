@@ -8,8 +8,12 @@
     @vite('resources/css/app.css')
 </head>
 <body class="flex flex-col bg-blue-300">
-<a href="{{route('members.create')}}">Create member</a>
-<h1>Member list:</h1>
+<a href="{{route('members.create')}}">Voeg nieuwe teamleden toe:</a>
+<h1>Teamleden lijst:</h1>
+@if(session()->has('message'))
+    <p>{{session()->get('message')}}</p>
+
+@endif
 <table>
 @foreach ( $members as $value)
 <div class="flex w-full ">
@@ -21,7 +25,16 @@
             <td>Email-address: {{$value->email}}</td>
             <td>Geboren: {{$value->birthday}}</td>
             <td><a href="{{route('members.show', $value->id )}}">Naar teamgenoot:</a></td>
-        </tr>
+            <td><a class="text-green-500" href="{{route('members.edit', $value->id )}}">Bewerk teamgenoot informatie:</a></td>
+            <td>
+                <form action="{{route('members.destroy', $value->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="text-red-500" type="submit">
+                    Delete
+                </button>
+                </form>
+            </td>
 </div>
 @endforeach
 </table>

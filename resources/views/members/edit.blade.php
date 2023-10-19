@@ -8,7 +8,7 @@
     @vite('resources/css/app.css')
 </head>
 <body class="flex flex-col">
-    <h1>Voeg een nieuw teamlid toe:</h1>
+    <h1>Bewerk teamlid informatie van {{$member->name}}:</h1>
     <a href="{{route('members.index')}}">Terug naar teamleden pagina</a>
     <div class="pb-8">
         @if($errors->any())
@@ -24,39 +24,40 @@
 
         @endif
     </div>
-    <form class="border" method="POST" action="{{route('members.store')}}" enctype="multipart/form-data">
+    <form class="border" method="POST" action="{{route('members.update', $member->id)}}" enctype="multipart/form-data">
         @csrf
+        @method('PATCH')
         <label for="nickname">Nickname:</label>
-        <input class="border" type="name" name="nickname">
+        <input class="border" type="name" name="nickname" value="{{$member->nickname}}">
         <br>
         <label for="name">Name:</label>
-        <input class="border" type="name" name="name">
+        <input class="border" type="name" name="name" value="{{$member->name}}">
         <br>
         <label for="surname">Surname:</label>
-        <input class="border" type="name" name="surname">
+        <input class="border" type="name" name="surname" value="{{$member->surname}}">
         <br>
         <label for="phonenumber">Phonenumber:</label>
-        <input class="border" type="name" name="phonenumber">
+        <input class="border" type="name" name="phonenumber" value="{{$member->phonenumber}}">
         <br>
         <label for="email">e-mail:</label>
-        <input class="border" type="name" name="email">
+        <input class="border" type="name" name="email" value="{{$member->email}}">
         <br>
         <label for="photograph">Photograph:</label>
 
-        <input class="border" type="file" name="photograph">
+        <input class="border" type="file" name="photograph" value="{{$member->photograph}}">
         </label>
         <br>
         <label for="birthday">Birthday:</label>
-        <input class="border" type="date" name="birthday">
+        <input class="border" type="date" name="birthday" value="{{$member->birthday}}">
         <br>
         <label for="address">Adress:</label>
-        <input class="border" type="name" name="address">
+        <input class="border" type="name" name="address" value="{{$member->address}}">
         <br>
         <label for="bank">Bank:</label>
-        <input class="border" type="name" name="bank">
+        <input class="border" type="name" name="bank" value="{{$member->bank}}">
         <br>
         <label for="payment_method">Payment method:</label>
-        <input class="border" type="name" name="payment_method">
+        <input class="border" type="name" name="payment_method" value="{{$member->payment_method}}">
         <br>
 
         <button class="border" type="submit">Submit</button>

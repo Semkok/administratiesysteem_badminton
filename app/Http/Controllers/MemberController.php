@@ -76,25 +76,58 @@ class MemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Member $member)
+    public function edit($id)
     {
-        //
+        return view('members.edit', [
+            'member' => Member::where('id', $id)->first()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMemberRequest $request, Member $member)
+    public function update(UpdateMemberRequest $request, $id)
     {
-        //
+        $request->validate([
+            'nickname' => 'required|string|max:20',
+            'name' => 'required|string|max:20',
+            'surname' => 'required|string|max:20',
+            'phonenumber' => 'required|string',
+            'email' => 'required|email|unique:members,email,' . $id,
+            'photograph' => 'required|file|mimes:jpeg,jpg,png', // Adjust validation rules as needed.
+            'birthday' => 'required|date',
+            'address' => 'required|string',
+            'bank' => 'required|string',
+            'payment_method' => 'required|string',
+        ]);
+
+
+        $request->except(['_token','_method']);
+
+        Member::where('id', $id)->update([
+            'nickname' => $request->nickname,
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'phonenumber' => $request->phonenumber,
+            'email' => $request->email,
+            'photograph' => $this->storeImage($request),
+            'birthday' => $request->birthday,
+            'address' => $request->address,
+            'bank' => $request->bank,
+            'payment_method' => $request->payment_method
+        ]);
+
+        return redirect(route('members.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Member $member)
+    public function destroy($id)
     {
-        //
+        Member::destroy($id);
+
+        return redirect(route('members.index'))->with('message', 'Teamlid is verwijderd');
     }
 
     private function storeImage($request){

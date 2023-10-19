@@ -22,13 +22,13 @@ class StoreMemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nickname' => 'required|string',
-            'name' => 'required|string',
-            'surname' => 'required|string',
+            'nickname' => 'required|string|max:20',
+            'name' => 'required|string|max:20',
+            'surname' => 'required|string|max:20',
             'phonenumber' => 'required|string',
             'email' => 'required|email|unique:members',
-            'photograph' => 'required|file', // Adjust validation rules as needed.
-            'birthday' => 'required|string',
+            'photograph' => 'required|file|mimes:jpeg,jpg,png', // Adjust validation rules as needed.
+            'birthday' => 'required|date',
             'address' => 'required|string',
             'bank' => 'required|string',
             'payment_method' => 'required|string',

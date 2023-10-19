@@ -14,11 +14,12 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
 
-            $columns = array("nickname","name","surname","phonenumber","email","photograph","birthday","address","bank","payment_method");
+            $columns = array("nickname","name","surname","phonenumber","email","photograph","address","bank","payment_method");
             $table->id();
             foreach($columns as $column){
                 $table->string($column);
             }
+            $table->date("birthday");
 
             $table->timestamps();
         });
