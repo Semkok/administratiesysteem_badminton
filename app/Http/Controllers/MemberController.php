@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 class MemberController extends Controller
 {
@@ -53,10 +55,11 @@ class MemberController extends Controller
             'birthday' => $request->birthday,
             'address' => $request->address,
             'bank' => $request->bank,
-            'payment_method' => $request->payment_method
+            'payment_method' => $request->payment_method,
+            'registration_date' => Carbon::now(),
+            'expiration_date' => Carbon::now()->addYear()
+
         ]);
-
-
         return $this->index();
 //        return redirect(route('members.index'));
 
@@ -134,5 +137,11 @@ class MemberController extends Controller
         $newImageName = uniqid() . '_' . $request->name . '.' . $request->file('photograph')->extension();
             $request->photograph->extension();
         return $request->photograph->move("public/images/", $newImageName);
+    }
+
+    private function checkExpiry(Model $model) : bool
+    {
+        Model::get();
+        return true;
     }
 }

@@ -20,6 +20,8 @@ return new class extends Migration
                 $table->string($column);
             }
             $table->date("birthday");
+            $table->date("registration_date")->nullable();
+            $table->date("expiration_date")->nullable();
 
             $table->timestamps();
         });

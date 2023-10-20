@@ -20,5 +20,7 @@ class Member extends Model
         'bank',
         'payment_method',
         'nickname', // Add 'nickname' to the fillable array
+        'registration_date',
+        'expiration_date'
     ];
 }
