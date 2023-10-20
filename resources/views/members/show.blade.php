@@ -12,8 +12,8 @@
 <body class="flex flex-col items-center bg-blue-200 h-full">
 
 <a href="{{route('members.index')}}">Terug naar teamledenlijst</a>
-<div class=" bg-red-800 h-full ">
-        <table class="flex flex-col bg-blue-400">
+<div class=" flex bg-red-800 h-full ">
+        <table class="bg-blue-400">
         <td><img src="{{asset($member->photograph)}}" width="100vw" height="100vh"></td>
         <td>Naam: {{$member->nickname}}</td>
         <td>Achternaam: {{$member->surname}}</td>
@@ -23,6 +23,14 @@
         <td>Address: {{$member->address}}</td>
         <td>Bank: {{$member->bank}}</td>
         <td>Betaal methode: {{$member->payment_method}}</td>
+
+            @if(!$isExpired)
+                <td>Lidmaatschap status: Het team lid zijn abonnement is geldig tot: {{$member->expiration_date}}</td>
+            @else
+                <td>Lidmaatschap status: Het team lidmaat schap is verstreken van dit teamlid: {{$member->expiration_date}}
+            @endif
+
+
         </table>
 </div>
 </body>

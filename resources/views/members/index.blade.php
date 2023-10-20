@@ -10,6 +10,7 @@
 <body class="flex flex-col bg-blue-300">
 <a href="{{route('members.create')}}">Voeg nieuwe teamleden toe:</a>
 <h1>Teamleden lijst:</h1>
+<p>Er zijn in totaal: {{$totalMembers}} Teamleden</p>
 @if(session()->has('message'))
     <p>{{session()->get('message')}}</p>
 

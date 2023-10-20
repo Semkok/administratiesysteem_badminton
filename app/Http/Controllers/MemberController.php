@@ -15,9 +15,17 @@ class MemberController extends Controller
      */
     public function index()
     {
+
+        $memberCount = Member::count();
+
+
         return view('members.index', [
             'members' => Member::orderBy('created_at', 'DESC')->get(),
+            'totalMembers' => $memberCount
         ]);
+
+
+
     }
 
     /**
@@ -70,9 +78,22 @@ class MemberController extends Controller
      */
     public function show($id)
     {
+        $member = Member::find($id);
+
+
+        if ($this->isMemberExpired($member)) {
+            $isExpired = true;
+            // Membership has expired
+        } else {
+            // Membership is still valid
+            $isExpired = false;
+        }
+
+
 
         return view('members.show', [
-            'member' => Member::findOrFail($id) // will throw an exception if not found
+            'member' => Member::findOrFail($id), // will throw an exception if not found
+            'isExpired' => $isExpired
         ]);
     }
 
@@ -139,9 +160,14 @@ class MemberController extends Controller
         return $request->photograph->move("public/images/", $newImageName);
     }
 
-    private function checkExpiry(Model $model) : bool
+    private function isMemberExpired(Member $member) : bool
     {
-        Model::get();
-        return true;
+        $expirationDate = $member->expiration_date;
+
+        if (Carbon::now()->gt($expirationDate)) {
+            return true;
+        }
+
+        return false;
     }
 }
