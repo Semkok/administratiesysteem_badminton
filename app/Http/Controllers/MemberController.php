@@ -6,7 +6,7 @@ use App\Models\Member;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+
 
 class MemberController extends Controller
 {
@@ -19,9 +19,12 @@ class MemberController extends Controller
         $memberCount = Member::count();
 
 
+        // deletes expired members first to keep the index page uptodate
+        $this->deleteExpiredMembers();
+
         return view('members.index', [
             'members' => Member::orderBy('created_at', 'DESC')->get(),
-            'totalMembers' => $memberCount
+            'totalMembers' => $memberCount,
         ]);
 
 
@@ -80,20 +83,9 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
-
-        if ($this->isMemberExpired($member)) {
-            $isExpired = true;
-            // Membership has expired
-        } else {
-            // Membership is still valid
-            $isExpired = false;
-        }
-
-
-
         return view('members.show', [
             'member' => Member::findOrFail($id), // will throw an exception if not found
-            'isExpired' => $isExpired
+            'expired' => $this->daysUntilMemberExpiration($member),
         ]);
     }
 
@@ -160,14 +152,21 @@ class MemberController extends Controller
         return $request->photograph->move("public/images/", $newImageName);
     }
 
-    private function isMemberExpired(Member $member) : bool
+    private function deleteExpiredMembers() : void
+    {
+        Member::where('expiration_date', '<', now())->delete();
+    }
+    private function daysUntilMemberExpiration(Member $member) : int
     {
         $expirationDate = $member->expiration_date;
 
-        if (Carbon::now()->gt($expirationDate)) {
-            return true;
-        }
+        // Calculate the difference in days
+        $daysUntilExpiration = Carbon::now()->diffInDays($expirationDate, false);
 
-        return false;
+        // If $daysUntilExpiration is negative, it means the expiration date has passed
+        // In that case, return 0 to indicate that the membership has already expired.
+        return $daysUntilExpiration < 0 ? 0 : $daysUntilExpiration;
     }
+
+
 }

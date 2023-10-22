@@ -23,14 +23,7 @@
         <td>Address: {{$member->address}}</td>
         <td>Bank: {{$member->bank}}</td>
         <td>Betaal methode: {{$member->payment_method}}</td>
-
-            @if(!$isExpired)
-                <td>Lidmaatschap status: Het team lid zijn abonnement is geldig tot: {{$member->expiration_date}}</td>
-            @else
-                <td>Lidmaatschap status: Het team lidmaat schap is verstreken van dit teamlid: {{$member->expiration_date}}
-            @endif
-
-
+        <td>Dagen voordat lidmaatschap vergaat: {{$expired}}</td>
         </table>
 </div>
 </body>

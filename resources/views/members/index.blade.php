@@ -10,11 +10,25 @@
 <body class="flex flex-col bg-blue-300">
 <a href="{{route('members.create')}}">Voeg nieuwe teamleden toe:</a>
 <h1>Teamleden lijst:</h1>
-<p>Er zijn in totaal: {{$totalMembers}} Teamleden</p>
+
+
+
+<!--voor meerdere casussen voor de hoeveelheid teamleden-->
+@if($totalMembers == 0)
+    <p>Er zijn op dit moment geen teamleden, voeg er een toe</p>
+
+@elseif($totalMembers == 1)
+    <p>Er is in totaal: {{$totalMembers}} Teamlid </p>
+
+@else
+    <p>Er zijn in totaal: {{$totalMembers}} Teamleden </p>
+@endif
+
 @if(session()->has('message'))
     <p>{{session()->get('message')}}</p>
 
 @endif
+
 <table>
 @foreach ( $members as $value)
 <div class="flex w-full ">
