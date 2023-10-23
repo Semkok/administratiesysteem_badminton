@@ -13,7 +13,7 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() : object
     {
 
         $memberCount = Member::count();
@@ -30,11 +30,14 @@ class MemberController extends Controller
 
 
     }
+    public function searchMembers(){
+        return view('members.index');
+    }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : object
     {
         return view('members.create');
     }
@@ -42,7 +45,7 @@ class MemberController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMemberRequest $request)
+    public function store(StoreMemberRequest $request) : object
     {
 //        $members = new Member();
 //        $members->name = $request->name;
@@ -68,7 +71,8 @@ class MemberController extends Controller
             'bank' => $request->bank,
             'payment_method' => $request->payment_method,
             'registration_date' => Carbon::now(),
-            'expiration_date' => Carbon::now()->addYear()
+//            'expiration_date' => Carbon::now()->addYear()
+            'expiration_date' => $request->expiration_date
 
         ]);
         return $this->index();
@@ -79,7 +83,7 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($id) : object
     {
         $member = Member::find($id);
 
@@ -92,7 +96,7 @@ class MemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($id) : object
     {
         return view('members.edit', [
             'member' => Member::where('id', $id)->first()
@@ -102,7 +106,7 @@ class MemberController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMemberRequest $request, $id)
+    public function update(UpdateMemberRequest $request, $id) : object
     {
         $request->validate([
             'nickname' => 'required|string|max:20',
@@ -139,14 +143,15 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($id) : object
     {
         Member::destroy($id);
 
         return redirect(route('members.index'))->with('message', 'Teamlid is verwijderd');
     }
 
-    private function storeImage($request){
+    private function storeImage($request) : object
+    {
         $newImageName = uniqid() . '_' . $request->name . '.' . $request->file('photograph')->extension();
             $request->photograph->extension();
         return $request->photograph->move("public/images/", $newImageName);

@@ -58,6 +58,9 @@
         <label for="payment_method">Payment method:</label>
         <input class="border" type="name" name="payment_method">
         <br>
+        <label for="expiration_date">Verloopdatum:</label>
+        <input class="border" type="date" name="expiration_date">
+        <br>
 
         <button class="border" type="submit">Submit</button>
     </form>

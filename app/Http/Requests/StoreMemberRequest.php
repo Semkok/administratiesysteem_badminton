@@ -32,6 +32,7 @@ class StoreMemberRequest extends FormRequest
             'address' => 'required|string',
             'bank' => 'required|string',
             'payment_method' => 'required|string',
+            'expiration_date' => 'required|date',
         ];
     }
 }
