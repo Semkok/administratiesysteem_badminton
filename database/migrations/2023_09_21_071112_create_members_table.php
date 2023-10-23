@@ -16,13 +16,14 @@ return new class extends Migration
 
             $columns = array("nickname","name","surname","phonenumber","email","photograph","address","bank","payment_method");
             $table->id();
+            $table->unsignedInteger('tournament_id')->nullable();
             foreach($columns as $column){
                 $table->string($column);
             }
             $table->date("birthday");
             $table->date("registration_date")->nullable();
             $table->date("expiration_date")->nullable();
-
+            $table->foreign('tournament_id')->references('id')->on('tournaments')->onDelete('cascade');
             $table->timestamps();
         });
     }

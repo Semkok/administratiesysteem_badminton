@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\TournamentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resources(['members' => MemberController::class]);
+Route::resources(['members' => MemberController::class, 'tournaments' => TournamentController::class]);
+
 
 
 require __DIR__.'/auth.php';

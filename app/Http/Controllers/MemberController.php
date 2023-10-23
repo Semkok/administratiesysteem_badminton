@@ -23,7 +23,7 @@ class MemberController extends Controller
         $this->deleteExpiredMembers();
 
         return view('members.index', [
-            'members' => Member::orderBy('created_at', 'DESC')->paginate(20),
+            'members' => Member::orderBy('id')->paginate(20),
             'totalMembers' => $memberCount,
         ]);
 
@@ -69,7 +69,8 @@ class MemberController extends Controller
             'payment_method' => $request->payment_method,
             'registration_date' => Carbon::now(),
 //            'expiration_date' => Carbon::now()->addYear()
-            'expiration_date' => $request->expiration_date
+            'expiration_date' => $request->expiration_date,
+            'tournament_id' => 1
 
         ]);
         return $this->index();
@@ -131,7 +132,7 @@ class MemberController extends Controller
             'birthday' => $request->birthday,
             'address' => $request->address,
             'bank' => $request->bank,
-            'payment_method' => $request->payment_method
+            'payment_method' => $request->payment_method,
         ]);
 
         return redirect(route('members.index'));

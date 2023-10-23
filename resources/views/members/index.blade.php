@@ -28,13 +28,18 @@
     <p>{{session()->get('message')}}</p>
 
 @endif
-
+<div class="mx-auto pb-10 w4/5">
+    {{$members->links()}}
+</div>
 <table>
+
 @foreach ( $members as $value)
 <div class="flex w-full ">
         <tr class="flex flex-col p-5 bg-gray-500">
             <td><img src="{{asset($value->photograph)}}" width="100vw" height="100vh"></td>
-            <td>Naam: {{$value->nickname}}</td>
+            <td>toernooi:<a class="text-orange-300" href=""> {{$value->tournament->name}}</a></td>
+            <td>Naam: {{$value->name}}</td>
+            <td>Bijnaam: {{$value->nickname}}</td>
             <td>Achternaam: {{$value->surname}}</td>
             <td>Telefoonnummer: {{$value->phonenumber}}</td>
             <td>Email-address: {{$value->email}}</td>
@@ -53,9 +58,7 @@
 </div>
 @endforeach
 
-    <div class="mx-auto pb-10 w4/5">
-        {{$members->links()}}
-    </div>
+
 </table>
 </body>
 </html>

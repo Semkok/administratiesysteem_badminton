@@ -22,13 +22,14 @@ class MemberFactory extends Factory
             'surname' => $this->faker->lastName,
             'phonenumber' => $this->faker->phoneNumber,
             'email' => $this->faker->email(),
-            'photograph' => "public/images/653534087b4dc_adw.png",
+            'photograph' => $this->faker->imageUrl(),
             'address' => $this->faker->address,
             'bank' => $this->faker->country,
             'payment_method' => $this->faker->userName,
             'birthday' => $this->faker->dateTimeBetween("2003-01-01","2013-01-01"),
             'registration_date' => $this->faker->dateTimeBetween("2015-01-01",Carbon::now()),
             'expiration_date' => $this->faker->dateTimeBetween(Carbon::now(),"2030-01-01"),
+            'tournament_id' => 1
         ];
     }
 }

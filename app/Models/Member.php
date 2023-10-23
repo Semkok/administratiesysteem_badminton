@@ -23,4 +23,8 @@ class Member extends Model
         'registration_date',
         'expiration_date'
     ];
+
+    public function tournament(){
+        return $this->belongsTo(Tournament::class);
+    }
 }
