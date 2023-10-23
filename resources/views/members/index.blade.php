@@ -52,6 +52,10 @@
             </td>
 </div>
 @endforeach
+
+    <div class="mx-auto pb-10 w4/5">
+        {{$members->links()}}
+    </div>
 </table>
 </body>
 </html>

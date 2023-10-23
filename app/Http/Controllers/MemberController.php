@@ -23,15 +23,12 @@ class MemberController extends Controller
         $this->deleteExpiredMembers();
 
         return view('members.index', [
-            'members' => Member::orderBy('created_at', 'DESC')->get(),
+            'members' => Member::orderBy('created_at', 'DESC')->paginate(20),
             'totalMembers' => $memberCount,
         ]);
 
 
 
-    }
-    public function searchMembers(){
-        return view('members.index');
     }
 
     /**
