@@ -29,7 +29,7 @@ class MemberFactory extends Factory
             'birthday' => $this->faker->dateTimeBetween("2003-01-01","2013-01-01"),
             'registration_date' => $this->faker->dateTimeBetween("2015-01-01",Carbon::now()),
             'expiration_date' => $this->faker->dateTimeBetween(Carbon::now(),"2030-01-01"),
-            'tournament_id' => 1
+//            'tournament_id' => 1
         ];
     }
 }

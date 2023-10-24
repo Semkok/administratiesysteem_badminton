@@ -11,56 +11,88 @@ class TournamentController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        //
+
+        return view('tournaments.index', [
+            'tournaments' => Tournament::orderBy("id")->paginate(20),
+            'totalTournaments' => Tournament::count(),
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : object
     {
-        //
+        return view('tournaments.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTournamentRequest $request)
+    public function store(StoreTournamentRequest $request) : object
     {
-        //
+
+        Tournament::create([
+            'name' => $request->name,
+
+        ]);
+        return $this->index();
+
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Tournament $tournament)
+    public function show($id) : object
     {
-        //
+
+        return view('tournaments.show', [
+            'tournament' => Tournament::findOrFail($id), // will throw an exception if not found
+
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tournament $tournament)
+    public function edit($id) : object
     {
-        //
+        return view('tournaments.edit', [
+            'tournament' => Tournament::where('id', $id)->first()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTournamentRequest $request, Tournament $tournament)
+    public function update(UpdateTournamentRequest $request, $id) : object
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:20',
+
+        ]);
+
+
+        $request->except(['_token','_method']);
+
+        Tournament::where('id', $id)->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect(route('tournaments.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tournament $tournament)
+    public function destroy($id) : object
     {
-        //
+        Tournament::destroy($id);
+
+        return redirect(route('tournaments.index'))->with('message', 'Teamlid is verwijderd');
     }
 }

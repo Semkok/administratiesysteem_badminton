@@ -16,15 +16,12 @@ class MemberController extends Controller
     public function index() : object
     {
 
-        $memberCount = Member::count();
-
-
         // deletes expired members first to keep the index page uptodate
         $this->deleteExpiredMembers();
 
         return view('members.index', [
             'members' => Member::orderBy('id')->paginate(20),
-            'totalMembers' => $memberCount,
+            'totalMembers' => Member::count(),
         ]);
 
 
@@ -70,7 +67,7 @@ class MemberController extends Controller
             'registration_date' => Carbon::now(),
 //            'expiration_date' => Carbon::now()->addYear()
             'expiration_date' => $request->expiration_date,
-            'tournament_id' => 1
+//            'tournament_id' => 1
 
         ]);
         return $this->index();

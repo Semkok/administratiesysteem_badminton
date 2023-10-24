@@ -16,6 +16,7 @@ use App\Http\Controllers\TournamentController;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,5 +34,5 @@ Route::middleware('auth')->group(function () {
 Route::resources(['members' => MemberController::class, 'tournaments' => TournamentController::class]);
 
 
-
 require __DIR__.'/auth.php';
+
