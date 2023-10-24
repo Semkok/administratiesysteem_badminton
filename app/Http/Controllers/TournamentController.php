@@ -37,6 +37,8 @@ class TournamentController extends Controller
 
         Tournament::create([
             'name' => $request->name,
+            'begin_date' => $request->begin_date,
+            'end_date' => $request->end_date
 
         ]);
         return $this->index();

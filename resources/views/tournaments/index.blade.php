@@ -37,6 +37,8 @@
             <tr class="flex flex-col p-5 bg-gray-500">
 
                 <td>Naam: {{$value->name}}</td>
+                <td>Naam: {{$value->begin_date}}</td>
+                <td>Naam: {{$value->end_date}}</td>
 
                 <td><a href="{{route('tournaments.show', $value->id )}}">Naar toernooi:</a></td>
                 <td><a class="text-green-500" href="{{route('tournaments.edit', $value->id )}}">Bewerk toernooi-informatie:</a></td>

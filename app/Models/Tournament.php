@@ -9,6 +9,12 @@ class Tournament extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'begin_date',
+        'end_date'
+    ];
+
     public function members(){
         return $this->hasMany(Member::class);
     }

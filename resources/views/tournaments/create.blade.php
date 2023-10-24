@@ -9,7 +9,7 @@
 </head>
 <body class="flex flex-col">
     <h1>Voeg een nieuw toernooi toe:</h1>
-    <a href="{{route('members.index')}}">Terug naar toernooien pagina</a>
+    <a href="{{route('tournaments.index')}}">Terug naar toernooien pagina</a>
     <div class="pb-8">
         @if($errors->any())
             <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
@@ -24,16 +24,16 @@
 
         @endif
     </div>
-    <form class="border" method="POST" action="{{route('members.store')}}" enctype="multipart/form-data">
+    <form class="border" method="POST" action="{{route('tournaments.store')}}" enctype="multipart/form-data">
         @csrf
         <label for="name">Name:</label>
         <input class="border" type="name" name="name">
         <br>
-        <label for="begin_date">Verloopdatum:</label>
-        <input class="border" type="date" name="expiration_date">
+        <label for="begin_date">Start datum:</label>
+        <input class="border" type="date" name="begin_date">
         <br>
-        <label for="end_date">Verloopdatum:</label>
-        <input class="border" type="date" name="expiration_date">
+        <label for="end_date">Eind datum:</label>
+        <input class="border" type="date" name="end_date">
         <br>
 
         <button class="border" type="submit">Submit</button>
