@@ -16,7 +16,7 @@ return new class extends Migration
 
             $columns = array("nickname","name","surname","phonenumber","email","photograph","address","bank","payment_method");
             $table->id();
-            $table->unsignedInteger('tournament_id')->nullable();
+            $table->unsignedInteger('tournament_id')->nullable()->default(0);
             foreach($columns as $column){
                 $table->string($column);
             }

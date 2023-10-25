@@ -13,15 +13,22 @@ class AddMemberToTournamentController extends Controller
 
     }
 
-    public function displayPage(){
+    public function displayPage($id){
         return view('add_member_to_tournament', [
-            'members' => Member::
+            'members' => Member::where("tournament_id", "=", "0")->paginate(20),
+            'tournament' => Tournament::where("id", "=", $id)->first()
         ]);
-    }
-    public function availableMember(){
 
     }
-    public function addMember(){
 
+    public function availableMember( ){
+
+    }
+    public function addMember(Request $request, $id){
+        Member::where('id', '=', $request->member_id )->update([
+            'tournament_id' => $id,
+
+        ]);
+        return redirect(route('addMembers.display', $id));
     }
 }

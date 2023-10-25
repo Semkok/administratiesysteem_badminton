@@ -21,6 +21,12 @@
     <div class=" flex bg-blue-500 flex-col w-1/2 ">
         <a href="{{route('addMembers.display', $tournament->id)}}">Voeg teamleden toe:</a>
     </div>
+    <div class=" flex bg-blue-500 flex-col w-1/2 ">
+        <p>De volgende teamleden zijn aan gemeld voor dit toernooi:</p>
+        @foreach($membersInTournament as $tournamentMember)
+            {{$tournamentMember->name}} <p class="text-red-500">Verwijderen uit toernooi</p>
+        @endforeach
+    </div>
 </div>
 
 

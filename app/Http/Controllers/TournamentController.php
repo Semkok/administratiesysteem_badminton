@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use App\Models\Tournament;
 use App\Http\Requests\StoreTournamentRequest;
 use App\Http\Requests\UpdateTournamentRequest;
@@ -54,6 +55,7 @@ class TournamentController extends Controller
 
         return view('tournaments.show', [
             'tournament' => Tournament::findOrFail($id), // will throw an exception if not found
+            'membersInTournament' => Member::where("tournament_id", "=", $id)->get()
 
         ]);
     }
