@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\AddMemberToTournamentController;
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +36,8 @@ Route::resources(['members' => MemberController::class, 'tournaments' => Tournam
 Route::get('/addMembers/{id}', [AddMemberToTournamentController::class, 'displayPage'])->name('addMembers.display');
 Route::post('/addMember/{id}', [AddMemberToTournamentController::class, 'addMember'])->name('addMemberToTournament');
 Route::post('/deleteMemberTournament/{id}', [AddMemberToTournamentController::class, 'deleteFromTournament'])->name('deleteMemberTournament');
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+
 
 
 require __DIR__.'/auth.php';

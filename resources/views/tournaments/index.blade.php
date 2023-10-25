@@ -27,6 +27,8 @@
     <p>{{session()->get('message')}}</p>
 
 @endif
+<h1>Search Results</h1>
+
 <div class="mx-auto pb-10 w4/5">
     {{$tournaments->links()}}
 </div>

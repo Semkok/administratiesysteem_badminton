@@ -6,6 +6,7 @@ use App\Models\Member;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 
 class MemberController extends Controller

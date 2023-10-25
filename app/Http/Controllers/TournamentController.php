@@ -100,7 +100,7 @@ class TournamentController extends Controller
         Tournament::destroy($id);
 
         // when tournament is deleted set the member tournament_id to zero as default
-        Member::where("id", "=", $id)->update(['tournament_id' => 0]);
+        Member::where("tournament_id", "=", $id)->update(['tournament_id' => 0]);
 
 
         return redirect(route('tournaments.index'))->with('message', 'Teamlid is verwijderd');

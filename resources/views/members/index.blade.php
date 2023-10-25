@@ -10,6 +10,7 @@
 <body class="flex flex-col bg-blue-300">
 <a href="{{route('members.create')}}">Voeg nieuwe teamleden toe:</a>
 <a href="{{route('tournaments.index')}}">Ga naar de toernooien pagina</a>
+<a href="{{route('search')}}">Zoek teamleden</a>
 <h1>Teamleden lijst:</h1>
 
 
@@ -29,6 +30,16 @@
     <p>{{session()->get('message')}}</p>
 
 @endif
+{{--<form action="{{ route('search') }}" method="GET">--}}
+{{--    <input type="text" name="query" placeholder="Zoek naar teamleden">--}}
+{{--    <button type="submit">Search</button>--}}
+{{--</form>--}}
+
+{{--<ul>--}}
+{{--    @foreach ($searchedMembers as $foundMember)--}}
+{{--        <li>{{ $foundMember->name }}</li>--}}
+{{--    @endforeach--}}
+{{--</ul>--}}
 <div class="mx-auto pb-10 w4/5">
     {{$members->links()}}
 </div>
