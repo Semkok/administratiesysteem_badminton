@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tournaments', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string("name")->unique();
             $table->date("begin_date");
             $table->date("end_date");
             $table->timestamps();

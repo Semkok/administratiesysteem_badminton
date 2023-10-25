@@ -24,7 +24,14 @@
     <div class=" flex bg-blue-500 flex-col w-1/2 ">
         <p>De volgende teamleden zijn aan gemeld voor dit toernooi:</p>
         @foreach($membersInTournament as $tournamentMember)
-            {{$tournamentMember->name}} <p class="text-red-500">Verwijderen uit toernooi</p>
+            {{$tournamentMember->name}}
+            <form action="{{route('deleteMemberTournament', $tournamentMember->id)}}" method="POST">
+                @csrf
+
+                <button class="text-red-500" type="submit">
+                    Verwijder teamlid van het toernooi
+                </button>
+            </form>
         @endforeach
     </div>
 </div>

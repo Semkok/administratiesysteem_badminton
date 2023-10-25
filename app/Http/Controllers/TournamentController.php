@@ -76,7 +76,7 @@ class TournamentController extends Controller
     public function update(UpdateTournamentRequest $request, $id) : object
     {
         $request->validate([
-            'name' => 'required|string|max:20',
+            'name' => 'required|unique|string|max:20',
 
         ]);
 
@@ -98,6 +98,10 @@ class TournamentController extends Controller
     public function destroy($id) : object
     {
         Tournament::destroy($id);
+
+        // when tournament is deleted set the member tournament_id to zero as default
+        Member::where("id", "=", $id)->update(['tournament_id' => 0]);
+
 
         return redirect(route('tournaments.index'))->with('message', 'Teamlid is verwijderd');
     }

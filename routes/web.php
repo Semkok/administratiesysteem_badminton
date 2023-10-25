@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
 Route::resources(['members' => MemberController::class, 'tournaments' => TournamentController::class]);
 Route::get('/addMembers/{id}', [AddMemberToTournamentController::class, 'displayPage'])->name('addMembers.display');
 Route::post('/addMember/{id}', [AddMemberToTournamentController::class, 'addMember'])->name('addMemberToTournament');
-
+Route::post('/deleteMemberTournament/{id}', [AddMemberToTournamentController::class, 'deleteFromTournament'])->name('deleteMemberTournament');
 
 
 require __DIR__.'/auth.php';

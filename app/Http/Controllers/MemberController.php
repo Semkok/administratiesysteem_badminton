@@ -20,7 +20,7 @@ class MemberController extends Controller
         $this->deleteExpiredMembers();
 
         return view('members.index', [
-            'members' => Member::orderBy('id')->paginate(20),
+            'members' => Member::orderBy('id', 'DESC')->paginate(20),
             'totalMembers' => Member::count(),
         ]);
 

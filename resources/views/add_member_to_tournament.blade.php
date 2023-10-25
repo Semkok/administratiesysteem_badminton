@@ -9,7 +9,6 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-
 @foreach($members as $member)
     {{$member->name}}
     <form method="POST" action="{{route('addMemberToTournament', $tournament->id)}}">

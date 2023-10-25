@@ -9,8 +9,14 @@ use App\Models\Tournament;
 class AddMemberToTournamentController extends Controller
 {
 
-    public function deleteFromTournament(){
+    public function deleteFromTournament($id){
 
+        Member::where('id', '=', $id )->update([
+            'tournament_id' => 0,
+
+        ]);
+        $id = 1;
+        return redirect(route('tournaments.show', $id));
     }
 
     public function displayPage($id){
@@ -21,9 +27,6 @@ class AddMemberToTournamentController extends Controller
 
     }
 
-    public function availableMember( ){
-
-    }
     public function addMember(Request $request, $id){
         Member::where('id', '=', $request->member_id )->update([
             'tournament_id' => $id,
