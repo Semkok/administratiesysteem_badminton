@@ -83,6 +83,8 @@ class TournamentController extends Controller
 
         Tournament::where('id', $id)->update([
             'name' => $request->name,
+            'begin_date' => $request->begin_date,
+            'end_Date' => $request->end_date,
         ]);
 
         return redirect(route('tournaments.index'));

@@ -11,21 +11,19 @@
 
 <body class="flex flex-col items-center bg-blue-200 h-full">
 
-<a href="{{route('members.index')}}">Terug naar teamledenlijst</a>
-<div class=" flex bg-red-800 h-full ">
-        <table class="bg-blue-400">
-        <td><img src="{{asset($member->photograph)}}" width="100vw" height="100vh"></td>
-        <td>Naam: {{$member->nickname}}</td>
-        <td>Achternaam: {{$member->surname}}</td>
-        <td>Telefoonnummer: {{$member->phonenumber}}</td>
-        <td>Email-address: {{$member->email}}</td>
-        <td>Geboren: {{$member->birthday}}</td>
-        <td>Address: {{$member->address}}</td>
-        <td>Bank: {{$member->bank}}</td>
-        <td>Betaal methode: {{$member->payment_method}}</td>
-        <td>Dagen voordat lidmaatschap vergaat: {{$expired}}</td>
-        </table>
+<a href="{{route('tournaments.index')}}">Terug naar toernooienlijst</a>
+<div class="w-full h-full flex-row">
+    <div class=" flex bg-blue-500 flex-col w-1/2">
+        <p>Naam: {{$tournament->name}}</p>
+        <p>Start datum: {{$tournament->begin_date}}</p>
+        <p>Eind datum: {{$tournament->end_date}}</p>
+    </div>
+    <div class=" flex bg-blue-500 flex-col w-1/2 ">
+        <a href="{{route('addMembers.display', $tournament->id)}}">Voeg teamleden toe:</a>
+    </div>
 </div>
+
+
 </body>
 </html>
 
