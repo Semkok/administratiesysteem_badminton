@@ -35,6 +35,12 @@ class TournamentController extends Controller
      */
     public function store(StoreTournamentRequest $request) : object
     {
+        $request->validate([
+            'name' => 'required|unique:tournaments|string|max:20',
+            'begin_date' => 'required|date',
+            'end_date' => 'required|date'
+
+        ]);
 
         Tournament::create([
             'name' => $request->name,
@@ -76,7 +82,9 @@ class TournamentController extends Controller
     public function update(UpdateTournamentRequest $request, $id) : object
     {
         $request->validate([
-            'name' => 'required|unique|string|max:20',
+            'name' => 'required|unique:tournaments|string|max:20',
+            'begin_date' => 'required|date',
+            'end_date' => 'required|date'
 
         ]);
 

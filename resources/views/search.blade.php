@@ -18,7 +18,7 @@
 <ul>
     @foreach ($searchedMembers as $foundMember)
         <li>{{ $foundMember->name }}</li>
-        <a href="{{route('members.show', $foundMember->id )}}">Naar teamgenoot:</a>
+        <a class="text-green-500" href="{{route('members.show', $foundMember->id )}}">Naar teamgenoot:</a>
     @endforeach
 </ul>
 </body>
