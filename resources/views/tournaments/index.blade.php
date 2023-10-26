@@ -7,56 +7,71 @@
     <title>Members</title>
     @vite('resources/css/app.css')
 </head>
-<body class="flex flex-col bg-blue-300">
-<a href="{{route('tournaments.create')}}">Voeg nieuwe toernooien toe:</a>
-<a href="{{route('members.index')}}">Ga naar de teamleden pagina</a>
-<h1>Toernooien lijst:</h1>
+<body class="bg-[#2176AE]">
 
-<!--voor meerdere casussen voor de hoeveelheid teamleden-->
-@if($totalTournaments == 0)
-    <p>Er zijn op dit moment geen toernooien, voeg er een toe</p>
+<div id="header" class="flex space-x-40 justify-center items-center p-5">
+    <a class="font-bold" href="{{route('tournaments.create')}}">Voeg nieuwe toernooien toe ++</a>
+    <h1 class="text-5xl">Teamleden lijst:</h1>
+    <a href="{{route('members.index')}}">Ga naar de teamleden pagina --></a>
 
-@elseif($totalTournaments == 1)
-    <p>Er is in totaal: {{$totalTournaments}} Toernooi </p>
-
-@else
-    <p>Er zijn in totaal: {{$totalTournaments}} Toernooien </p>
-@endif
-
-@if(session()->has('message'))
-    <p>{{session()->get('message')}}</p>
-
-@endif
-<h1>Search Results</h1>
-
-<div class="mx-auto pb-10 w4/5">
-    {{$tournaments->links()}}
 </div>
-<table>
 
-    @foreach ( $tournaments as $value)
-        <div class="flex w-full ">
-            <tr class="flex flex-col p-5 bg-gray-500">
+<div class="flex flex-col bg-[#fe6847] text-[#000000]">
 
-                <td>Naam: {{$value->name}}</td>
-                <td>Naam: {{$value->begin_date}}</td>
-                <td>Naam: {{$value->end_date}}</td>
+    <div class="flex bg-[#57b8ff] flex-row justify-center border border-black">
+        <div class="flex flex-col mx-auto pb-10 w4/5 bg-[#57b8ff]">
+            @if($totalTournaments == 0)
+                <p>Er zijn op dit moment geen toernooien, voeg er een toe</p>
 
-                <td><a href="{{route('tournaments.show', $value->id )}}">Naar toernooi:</a></td>
-                <td><a class="text-green-500" href="{{route('tournaments.edit', $value->id )}}">Bewerk toernooi-informatie:</a></td>
-                <td>
-                    <form action="{{route('tournaments.destroy', $value->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="text-red-500" type="submit">
-                            Delete
-                        </button>
-                    </form>
-                </td>
+            @elseif($totalTournaments == 1)
+                <p>Er is in totaal: {{$totalTournaments}} Toernooi </p>
+
+            @else
+                <p>Er zijn in totaal: {{$totalTournaments}} Toernooien </p>
+            @endif
+
+            @if(session()->has('message'))
+                <p>{{session()->get('message')}}</p>
+
+            @endif
         </div>
-    @endforeach
+        <div class="flex flex-col mx-auto  pb-10 w4/5 bg-[#57b8ff]">
+            {{$tournaments->links()}}
+
+        </div>
+        <div class="flex flex-col mx-auto pb-10 w4/5 bg-[#57b8ff]">
+            <a href="{{route('search')}}">Zoek toernooien </a>
+        </div>
+    </div>
+    <div class="flex w-full h-full overflow-y-auto">
+        <div class="flex flex-row flex-wrap w-full h-1/2 ">
 
 
-</table>
+            @foreach ( $tournaments as $value)
+                <div class="flex flex-row p-10 bg-[#fe6847] justify-center w-1/4 h-1/4 overflow-y-auto">
+                    <div class="flex flex-col items-center border border-black bg-[#fbb13c] ">
+
+
+                        <p>Naam: {{$value->name}}</p>
+                        <p>Start datum: {{$value->begin_date}}</p>
+                        <p>Eind datum: {{$value->end_date}}</p>
+                        <div class="flex flex-col border border-black bg-[#B66D0D]">
+                            <a href="{{route('tournaments.show', $value->id )}}">Naar toernooi:</a>
+                            <a href="{{route('tournaments.edit', $value->id )}}">Bewerk toernooi-informatie:</a></td>
+
+                            <form action="{{route('tournaments.destroy', $value->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">
+                                    Verwijder toernooi
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 </body>
 </html>

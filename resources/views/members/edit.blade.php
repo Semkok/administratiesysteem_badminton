@@ -7,10 +7,54 @@
     <title>Document</title>
     @vite('resources/css/app.css')
 </head>
-<body class="flex flex-col">
-    <h1>Bewerk teamlid informatie van {{$member->name}}:</h1>
-    <a href="{{route('members.index')}}">Terug naar teamleden pagina</a>
-    <div class="pb-8">
+<body class="flex w-full h-full flex-col items-center bg-[#2176AE]">
+<a href="{{route('members.index')}}"><-- Terug naar teamleden pagina</a>
+<h1 class="text-5xl pb-20 p-3">Bewerk dit teamlid</h1>
+
+<div class=" flex flex-row w-1/2 h-full pb-8 bg-[#57b8ff] border border-black ">
+
+    <form class="  flex flex-col w-1/2 h-full p-3" method="POST" action="{{route('members.update', $member->id)}}" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
+        <label for="nickname">Nickname:</label>
+        <input class="border" type="name" name="nickname" value="{{$member->nickname}}">
+
+        <label for="name">Name:</label>
+        <input class="border" type="name" name="name" value="{{$member->name}}">
+
+        <label for="surname">Surname:</label>
+        <input class="border" type="name" name="surname" value="{{$member->surname}}">
+
+        <label for="phonenumber">Phonenumber:</label>
+        <input class="border" type="name" name="phonenumber" value="{{$member->phonenumber}}">
+
+        <label for="email">e-mail:</label>
+        <input class="border" type="name" name="email" value="{{$member->email}}">
+
+        <label for="photograph">Photograph:</label>
+
+        <input class="border" type="file" name="photograph" value="{{$member->photograph}}">
+        </label>
+
+        <label for="birthday">Birthday:</label>
+        <input class="border" type="date" name="birthday" value="{{$member->birthday}}">
+
+        <label for="address">Adress:</label>
+        <input class="border" type="name" name="address" value="{{$member->address}}">
+
+        <label for="bank">Bank:</label>
+        <input class="border" type="name" name="bank" value="{{$member->bank}}">
+
+        <label for="payment_method">Payment method:</label>
+        <input class="border" type="name" name="payment_method" value="{{$member->payment_method}}">
+
+        <label for="expiration_date">Verloopdatum:</label>
+        <input class="border" type="date" name="expiration_date" value="{{$member->expiration_date}}">
+
+
+        <button class="border" type="submit">Submit</button>
+    </form>
+    <div class=" flex flex-col w-1/3 pb-8">
         @if($errors->any())
             <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
                 Something went wrong...
@@ -24,43 +68,6 @@
 
         @endif
     </div>
-    <form class="border" method="POST" action="{{route('members.update', $member->id)}}" enctype="multipart/form-data">
-        @csrf
-        @method('PATCH')
-        <label for="nickname">Nickname:</label>
-        <input class="border" type="name" name="nickname" value="{{$member->nickname}}">
-        <br>
-        <label for="name">Name:</label>
-        <input class="border" type="name" name="name" value="{{$member->name}}">
-        <br>
-        <label for="surname">Surname:</label>
-        <input class="border" type="name" name="surname" value="{{$member->surname}}">
-        <br>
-        <label for="phonenumber">Phonenumber:</label>
-        <input class="border" type="name" name="phonenumber" value="{{$member->phonenumber}}">
-        <br>
-        <label for="email">e-mail:</label>
-        <input class="border" type="name" name="email" value="{{$member->email}}">
-        <br>
-        <label for="photograph">Photograph:</label>
-
-        <input class="border" type="file" name="photograph" value="{{$member->photograph}}">
-        </label>
-        <br>
-        <label for="birthday">Birthday:</label>
-        <input class="border" type="date" name="birthday" value="{{$member->birthday}}">
-        <br>
-        <label for="address">Adress:</label>
-        <input class="border" type="name" name="address" value="{{$member->address}}">
-        <br>
-        <label for="bank">Bank:</label>
-        <input class="border" type="name" name="bank" value="{{$member->bank}}">
-        <br>
-        <label for="payment_method">Payment method:</label>
-        <input class="border" type="name" name="payment_method" value="{{$member->payment_method}}">
-        <br>
-
-        <button class="border" type="submit">Submit</button>
-    </form>
+</div>
 </body>
 </html>

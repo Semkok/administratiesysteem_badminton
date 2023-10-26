@@ -7,12 +7,27 @@
     <title>Document</title>
     @vite('resources/css/app.css')
 </head>
-<body class="flex flex-col">
-    <h1>Voeg een nieuw toernooi toe:</h1>
-    <a href="{{route('tournaments.index')}}">Terug naar toernooien pagina</a>
+<body class="flex w-full h-full flex-col items-center bg-[#2176AE]">
+<a href="{{route('members.index')}}"><-- Terug naar toernooien pagina</a>
+<h1 class="text-5xl pb-20 p-3">Voeg een nieuw toernooi toe:</h1>
+
+<div class=" flex flex-row w-1/2 h-full pb-8 bg-[#57b8ff] border border-black ">
+
+    <form class="  flex flex-col w-1/2 h-full p-3" method="POST" action="{{route('tournaments.store')}}" enctype="multipart/form-data">
+        @csrf
+        <label for="nickname">Naam:</label>
+        <input class="border" type="name" name="name">
+
+        <label for="begin_date">Start datum:</label>
+        <input class="border" type="date" name="begin_date">
+
+        <label for="end_date">Eind datum:</label>
+        <input class="border" type="date" name="end_date">
 
 
-    <div class="pb-8">
+        <button class="border" type="submit">Submit</button>
+    </form>
+    <div class=" flex flex-col w-1/3 pb-8">
         @if($errors->any())
             <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
                 Something went wrong...
@@ -26,21 +41,6 @@
 
         @endif
     </div>
-
-
-
-    <form class="border" method="POST" action="{{route('tournaments.store')}}" enctype="multipart/form-data">
-        @csrf
-        <label for="name">Name:</label>
-        <input class="border" type="name" name="name">
-        <br>
-        <label for="begin_date">Start datum:</label>
-        <input class="border" type="date" name="begin_date">
-        <br>
-        <label for="end_date">Eind datum:</label>
-        <input class="border" type="date" name="end_date">
-        <br>
-        <button class="border" type="submit">Submit</button>
-    </form>
+</div>
 </body>
 </html>
