@@ -11,9 +11,9 @@
 
 <div class="flex flex-col bg-[#2176AE] text-[#000000]">
     <div id="header" class="flex space-x-40 justify-center items-center p-5">
-        <a href="{{route('members.create')}}">Voeg nieuwe teamleden toe:</a>
+        <a class="font-bold" href="{{route('members.create')}}">Voeg nieuwe teamleden toe ++</a>
         <h1 class="text-5xl">Teamleden lijst:</h1>
-        <a href="{{route('tournaments.index')}}">Ga naar de toernooien pagina</a>
+        <a href="{{route('tournaments.index')}}">Ga naar de toernooien pagina --></a>
 
     </div>
 <div class="flex bg-[#57b8ff] flex-row justify-center border border-black">
@@ -37,7 +37,7 @@
 
     </div>
     <div class="flex flex-col mx-auto pb-10 w4/5 bg-[#57b8ff]">
-    <a href="{{route('search')}}">Zoek teamleden</a>
+    <a href="{{route('search')}}">Zoek teamleden </a>
     </div>
 </div>
     <div class="flex w-full h-full overflow-y-auto">

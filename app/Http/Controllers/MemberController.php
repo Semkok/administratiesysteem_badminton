@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
+use App\Models\Tournament;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -83,9 +84,11 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
+
         return view('members.show', [
             'member' => Member::findOrFail($id), // will throw an exception if not found
             'expired' => $this->daysUntilMemberExpiration($member),
+            'tournament' => Tournament::where("id","=", $member->tournament_id)->first()
         ]);
     }
 

@@ -9,22 +9,25 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="flex flex-col items-center bg-blue-200 h-full">
+<body class="flex flex-col items-center justify-center w-full h-full bg-blue-200 h-full bg-[#2176AE]">
+<div class="flex flex-col justify-center items-center bg-[#fbb13c] border border-black">
+        <a href="{{route('members.index')}}"><-- Terug naar teamledenlijst</a>
+            <p><img src="{{asset($member->photograph)}}" width="100vw" height="100vh"></p>
+            <p>Naam: {{$member->nickname}}</p>
+            <p>Achternaam: {{$member->surname}}</p>
+            <p>Telefoonnummer: {{$member->phonenumber}}</p>
+            <p>Email-address: {{$member->email}}<p>
+            <p>Geboren: {{$member->birthday}}</p>
+            <p>Address: {{$member->address}}</p>
+            <p>Bank: {{$member->bank}}</p>
+            <p>Betaal methode: {{$member->payment_method}}</p>
+            @if($member->tournament_id != 0)
+            <p class="font-bold">Doet mee aan toernooi: {{$tournament->name}}</p>
+            @else
+            <p class="font-bold">Dit persoon doet nog niet mee aan een toernooi</p>
+            @endif
 
-<a href="{{route('members.index')}}">Terug naar teamledenlijst</a>
-<div class=" flex bg-red-800 h-full ">
-        <table class="bg-blue-400">
-        <td><img src="{{asset($member->photograph)}}" width="100vw" height="100vh"></td>
-        <td>Naam: {{$member->nickname}}</td>
-        <td>Achternaam: {{$member->surname}}</td>
-        <td>Telefoonnummer: {{$member->phonenumber}}</td>
-        <td>Email-address: {{$member->email}}</td>
-        <td>Geboren: {{$member->birthday}}</td>
-        <td>Address: {{$member->address}}</td>
-        <td>Bank: {{$member->bank}}</td>
-        <td>Betaal methode: {{$member->payment_method}}</td>
-        <td>Dagen voordat lidmaatschap vergaat: {{$expired}}</td>
-        </table>
+        <p class="font-bold"> Dagen voordat lidmaatschap vergaat: <p class="text-red-500">{{$expired}}</p></p>
 </div>
 </body>
 </html>

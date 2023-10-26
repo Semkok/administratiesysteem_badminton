@@ -8,18 +8,33 @@
     <title>Document</title>
     @vite('resources/css/app.css')
 </head>
-<body>
-<a href="{{route('members.index')}}">Terug naar index teamleden</a>
-<form action="{{ route('search') }}" method="GET">
-    <input type="text" name="query" placeholder="Zoek naar teamleden">
-    <button type="submit">Search</button>
-</form>
+<body class="bg-[#2176AE]">
+<a class="flex bg-[#fbb13c]" href="{{route('members.index')}}"><--Terug naar index teamleden</a>
+<div class="flex flex-col justify-center items-center h-full w-full ">
+<div id="searchpart" class="flex flex-col">
 
-<ul>
+
+<h1 class="text-5xl pb-40 p-5">
+    Teamleden zoeken
+</h1>
+
+
+<form action="{{ route('search') }}" method="GET">
+    <input class="w-full" type="text" name="query" placeholder="Zoek naar teamleden">
+    <button type="submit"></button>
+</form>
+</div>
+
+    <div id="foundmembers" class="flex p-20 flex-col">
+
     @foreach ($searchedMembers as $foundMember)
-        <li>{{ $foundMember->name }}</li>
+        <div class="flex p-2 pr-4">
+        <p>{{ $foundMember->name }}</p>
         <a class="text-green-500" href="{{route('members.show', $foundMember->id )}}">Naar teamgenoot:</a>
+        </div>
     @endforeach
-</ul>
+</div>
+
+</div>
 </body>
 </html>
