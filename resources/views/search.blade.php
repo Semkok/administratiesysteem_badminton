@@ -29,7 +29,7 @@
 
     @foreach ($searchedMembers as $foundMember)
         <div class="flex p-2 pr-4">
-        <p>{{ $foundMember->name }}</p>
+        <p>{{ $foundMember->nickname }}</p>
         <a class="text-green-500" href="{{route('members.show', $foundMember->id )}}">Naar teamgenoot:</a>
         </div>
     @endforeach

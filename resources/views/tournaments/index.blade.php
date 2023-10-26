@@ -39,9 +39,7 @@
             {{$tournaments->links()}}
 
         </div>
-        <div class="flex flex-col mx-auto pb-10 w4/5 bg-[#57b8ff]">
-            <a href="{{route('search')}}">Zoek toernooien </a>
-        </div>
+
     </div>
     <div class="flex w-full h-full overflow-y-auto">
         <div class="flex flex-row flex-wrap w-full h-1/2 ">

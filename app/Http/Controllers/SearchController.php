@@ -11,7 +11,7 @@ class SearchController extends Controller
     {
         $query = $request->input('query');
 
-        $searchedMembers = Member::where('name', 'like', "%$query%")
+        $searchedMembers = Member::where('nickname', 'like', "%$query%")
             ->get();
 
         return view('search', compact('searchedMembers'));

@@ -9,6 +9,8 @@
 </head>
 <body>
 <div id="header" class="flex bg-[#2176AE] space-x-40 justify-center items-center p-5">
+    <a href="/">Terug naar home</a>
+    <a href="{{route('dashboard')}}">Account</a>
     <a class="font-bold" href="{{route('members.create')}}">Voeg nieuwe teamleden toe ++</a>
     <h1 class="text-5xl">Teamleden lijst:</h1>
     <a href="{{route('tournaments.index')}}">Ga naar de toernooien pagina --></a>
