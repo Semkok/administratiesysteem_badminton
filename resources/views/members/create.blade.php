@@ -7,62 +7,66 @@
     <title>Document</title>
     @vite('resources/css/app.css')
 </head>
-<body class="flex flex-col">
-    <h1>Voeg een nieuw teamlid toe:</h1>
-    <a href="{{route('members.index')}}">Terug naar teamleden pagina</a>
-    <div class="pb-8">
-        @if($errors->any())
-            <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
-                Something went wrong...
-            </div>
-            <ul  class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-text-red-700">
-                @foreach($errors->all() as $error)
-                    <br>
-                    {{$error}}
-                @endforeach
-            </ul>
+<body class="flex w-full h-full flex-col items-center bg-[#2176AE]">
+    <a href="{{route('members.index')}}"><-- Terug naar teamleden pagina</a>
+    <h1 class="text-5xl pb-20 p-3">Voeg een nieuw teamlid toe:</h1>
 
-        @endif
-    </div>
-    <form class="border" method="POST" action="{{route('members.store')}}" enctype="multipart/form-data">
+    <div class=" flex flex-row w-1/2 h-full pb-8 bg-[#57b8ff] border border-black ">
+
+    <form class="  flex flex-col w-1/2 h-full p-3" method="POST" action="{{route('members.store')}}" enctype="multipart/form-data">
         @csrf
         <label for="nickname">Nickname:</label>
         <input class="border" type="name" name="nickname">
-        <br>
+
         <label for="name">Name:</label>
         <input class="border" type="name" name="name">
-        <br>
+
         <label for="surname">Surname:</label>
         <input class="border" type="name" name="surname">
-        <br>
+
         <label for="phonenumber">Phonenumber:</label>
         <input class="border" type="name" name="phonenumber">
-        <br>
+
         <label for="email">e-mail:</label>
         <input class="border" type="name" name="email">
-        <br>
+
         <label for="photograph">Photograph:</label>
 
         <input class="border" type="file" name="photograph">
         </label>
-        <br>
+
         <label for="birthday">Birthday:</label>
         <input class="border" type="date" name="birthday">
-        <br>
+
         <label for="address">Adress:</label>
         <input class="border" type="name" name="address">
-        <br>
+
         <label for="bank">Bank:</label>
         <input class="border" type="name" name="bank">
-        <br>
+
         <label for="payment_method">Payment method:</label>
         <input class="border" type="name" name="payment_method">
-        <br>
+
         <label for="expiration_date">Verloopdatum:</label>
         <input class="border" type="date" name="expiration_date">
-        <br>
+
 
         <button class="border" type="submit">Submit</button>
     </form>
+        <div class=" flex flex-col w-1/3 pb-8">
+            @if($errors->any())
+                <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+                    Something went wrong...
+                </div>
+                <ul  class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-text-red-700">
+                    @foreach($errors->all() as $error)
+                        <br>
+                        {{$error}}
+                    @endforeach
+                </ul>
+
+            @endif
+        </div>
+    </div>
 </body>
 </html>
