@@ -28,18 +28,18 @@
         @csrf
         @method('PATCH')
 
-        <label for="name">Name:</label>
+        <label for="name">Naam:</label>
         <input class="border" type="name" name="name" value="{{$tournament->name}}">
         <br>
-        <label for="begin_date">Name:</label>
+        <label for="begin_date">Begin-datum:</label>
         <input class="border" type="date" name="begin_date" value="{{$tournament->begin_date}}">
         <br>
-        <label for="end_date">Name:</label>
+        <label for="end_date">Eind-datum:</label>
         <input class="border" type="date" name="end_date" value="{{$tournament->end_date}}">
         <br>
 
 
-        <button class="border" type="submit">Submit</button>
+        <button class="border" type="submit">Bewerk</button>
     </form>
 </body>
 </html>

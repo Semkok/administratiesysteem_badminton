@@ -21,13 +21,13 @@
     <div class="flex bg-[#57b8ff] flex-row justify-center border border-black">
         <div class="flex flex-col mx-auto pb-10 w4/5 bg-[#57b8ff]">
             @if($totalTournaments == 0)
-                <p>Er zijn op dit moment geen toernooien, voeg er een toe</p>
+                <p>Er zijn op dit moment geen toernooien, voeg er een toe.</p>
 
             @elseif($totalTournaments == 1)
-                <p>Er is in totaal: {{$totalTournaments}} Toernooi </p>
+                <p>Er is in totaal: {{$totalTournaments}} Toernooi. </p>
 
             @else
-                <p>Er zijn in totaal: {{$totalTournaments}} Toernooien </p>
+                <p>Er zijn in totaal: {{$totalTournaments}} Toernooien. </p>
             @endif
 
             @if(session()->has('message'))
@@ -51,8 +51,8 @@
 
 
                         <p>Naam: {{$value->name}}</p>
-                        <p>Start datum: {{$value->begin_date}}</p>
-                        <p>Eind datum: {{$value->end_date}}</p>
+                        <p>Start-datum: {{$value->begin_date}}</p>
+                        <p>Eind-datum: {{$value->end_date}}</p>
                         <div class="flex flex-col border border-black bg-[#B66D0D]">
                             <a href="{{route('tournaments.show', $value->id )}}">Naar toernooi:</a>
                             <a href="{{route('tournaments.edit', $value->id )}}">Bewerk toernooi-informatie:</a></td>

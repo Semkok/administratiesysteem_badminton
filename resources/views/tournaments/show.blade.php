@@ -12,9 +12,9 @@
 <body class="flex flex-col items-center justify-center w-full h-full bg-blue-200 h-full bg-[#2176AE]">
 <div class="flex flex-col justify-center items-center bg-[#fbb13c] border border-black p-5">
         <p>Naam: {{$tournament->name}}</p>
-        <p>Start datum: {{$tournament->begin_date}}</p>
-        <p>Eind datum: {{$tournament->end_date}}</p>
-        <a class="font-bold" href="{{route('addMembers.display', $tournament->id)}}">Voeg teamleden toe aan dit toernooi</a>
+        <p>Start-datum: {{$tournament->begin_date}}</p>
+        <p>Eind-datum: {{$tournament->end_date}}</p>
+        <a class="font-bold" href="{{route('addMembers.display', $tournament->id)}}">Voeg teamleden toe aan dit toernooi.</a>
 
         <p>De volgende teamleden zijn aan gemeld voor dit toernooi:</p>
         @foreach($membersInTournament as $tournamentMember)
@@ -23,7 +23,7 @@
                 @csrf
 
                 <button class="text-red-500" type="submit">
-                    Verwijder teamlid van het toernooi
+                    Verwijder teamlid van het toernooi.
                 </button>
             </form>
         @endforeach

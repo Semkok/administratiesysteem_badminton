@@ -9,8 +9,8 @@
 </head>
 <body>
 <div id="header" class="flex bg-[#2176AE] space-x-40 justify-center items-center p-5">
-    <a href="/">Terug naar home</a>
-    <a href="{{route('dashboard')}}">Account</a>
+    <a href="/">Terug naar homepagina</a>
+    <a href="{{route('dashboard')}}">Profiel</a>
     <a class="font-bold" href="{{route('members.create')}}">Voeg nieuwe teamleden toe ++</a>
     <h1 class="text-5xl">Teamleden lijst:</h1>
     <a href="{{route('tournaments.index')}}">Ga naar de toernooien pagina --></a>
@@ -22,12 +22,12 @@
 <div class="flex bg-[#57b8ff] flex-row justify-center border border-black">
     <div class="flex flex-col mx-auto pb-10 w4/5 bg-[#57b8ff]">
     @if($totalMembers == 0)
-        <p>Er zijn op dit moment geen teamleden, voeg er een toe</p>
+        <p>Er zijn op dit moment geen teamleden, voeg er een toe.</p>
     @elseif($totalMembers == 1)
-        <p>Er is in totaal: {{$totalMembers}} Teamlid </p>
+        <p>Er is in totaal: {{$totalMembers}} Teamlid. </p>
 
     @else
-        <p>Er zijn in totaal: {{$totalMembers}} Teamleden </p>
+        <p>Er zijn in totaal: {{$totalMembers}} Teamleden. </p>
     @endif
 
     @if(session()->has('message'))
@@ -67,7 +67,7 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit">
-                            Delete
+                            Verwijder teamgenoot
                         </button>
                     </form>
                     </div>

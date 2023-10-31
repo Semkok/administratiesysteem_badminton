@@ -17,7 +17,7 @@
             <p>Achternaam: {{$member->surname}}</p>
             <p>Telefoonnummer: {{$member->phonenumber}}</p>
             <p>Email-address: {{$member->email}}<p>
-            <p>Geboren: {{$member->birthday}}</p>
+            <p>Geboortedatum: {{$member->birthday}}</p>
             <p>Address: {{$member->address}}</p>
             <p>Bank: {{$member->bank}}</p>
             <p>Betaal methode: {{$member->payment_method}}</p>

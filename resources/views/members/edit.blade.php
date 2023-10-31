@@ -16,27 +16,27 @@
     <form class="  flex flex-col w-1/2 h-full p-3" method="POST" action="{{route('members.update', $member->id)}}" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
-        <label for="nickname">Nickname:</label>
+        <label for="nickname">Bijnaam:</label>
         <input class="border" type="name" name="nickname" value="{{$member->nickname}}">
 
-        <label for="name">Name:</label>
+        <label for="name">Naam:</label>
         <input class="border" type="name" name="name" value="{{$member->name}}">
 
-        <label for="surname">Surname:</label>
+        <label for="surname">Achternaam:</label>
         <input class="border" type="name" name="surname" value="{{$member->surname}}">
 
-        <label for="phonenumber">Phonenumber:</label>
+        <label for="phonenumber">Telefoonnummer:</label>
         <input class="border" type="name" name="phonenumber" value="{{$member->phonenumber}}">
 
         <label for="email">e-mail:</label>
         <input class="border" type="name" name="email" value="{{$member->email}}">
 
-        <label for="photograph">Photograph:</label>
+        <label for="photograph">Foto:</label>
 
         <input class="border" type="file" name="photograph" value="{{$member->photograph}}">
         </label>
 
-        <label for="birthday">Birthday:</label>
+        <label for="birthday">Geboortedatum:</label>
         <input class="border" type="date" name="birthday" value="{{$member->birthday}}">
 
         <label for="address">Adress:</label>
@@ -45,7 +45,7 @@
         <label for="bank">Bank:</label>
         <input class="border" type="name" name="bank" value="{{$member->bank}}">
 
-        <label for="payment_method">Payment method:</label>
+        <label for="payment_method">Betaal methode:</label>
         <input class="border" type="name" name="payment_method" value="{{$member->payment_method}}">
 
         <label for="expiration_date">Verloopdatum:</label>

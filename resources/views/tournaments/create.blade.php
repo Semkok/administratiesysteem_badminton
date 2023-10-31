@@ -18,10 +18,10 @@
         <label for="nickname">Naam:</label>
         <input class="border" type="name" name="name">
 
-        <label for="begin_date">Start datum:</label>
+        <label for="begin_date">Start-datum:</label>
         <input class="border" type="date" name="begin_date">
 
-        <label for="end_date">Eind datum:</label>
+        <label for="end_date">Eind-datum:</label>
         <input class="border" type="date" name="end_date">
 
 
